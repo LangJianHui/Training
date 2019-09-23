@@ -1,6 +1,6 @@
 package com.aaa.mrlang.controller;
 
-import com.aaa.mrlang.entity.Pager;
+import com.aaa.mrlang.entity.PageInfo;
 import com.aaa.mrlang.service.UserService;
 import com.aaa.mrlang.service.UserServiceImpl;
 import com.alibaba.fastjson.JSON;
@@ -26,10 +26,20 @@ public class UserServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=utf-8");
         UserService userService=new UserServiceImpl();
-        String sPageNo= request.getParameter("pageNo");
-        if(sPageNo==null) sPageNo="1";
 
-        Pager pager = userService.query(Integer.parseInt(sPageNo));
+
+        String draw=request.getParameter("draw")==null?"1":request.getParameter("draw");
+        String start=request.getParameter("start")==null?"0":request.getParameter("start");
+        String length=request.getParameter("length")==null?"10":request.getParameter("length");
+
+        System.out.println(draw+":"+start+":"+length+":");
+
+        PageInfo pager= userService.query(Integer.parseInt(start),Integer.parseInt(length),null)  ;
+        pager.setDraw(Integer.parseInt(draw));
+
+
+
+
 
 
         //将Java转换成json字符串

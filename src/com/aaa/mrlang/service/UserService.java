@@ -1,8 +1,10 @@
 package com.aaa.mrlang.service;
 
 
-import com.aaa.mrlang.entity.Pager;
+import com.aaa.mrlang.entity.PageInfo;
+
+import java.util.Map;
 
 public interface UserService {
-    Pager query(int pageNo);
+    PageInfo query(int start, int pageSize, Map condation);
 }

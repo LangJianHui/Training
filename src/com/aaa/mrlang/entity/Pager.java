@@ -5,8 +5,7 @@ import java.util.List;
 
 public class Pager implements Serializable {
 
-    private Integer code=0;
-    private String msg="";
+
     /**
      * 当前页码：传参
      */
@@ -49,30 +48,17 @@ public class Pager implements Serializable {
     /**
      * 总条数
      */
-    private Integer count;
+    private Integer totalCount;
 
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 
     public Pager(Integer pageNo, Integer pageSize, List data, Integer totalCount) {
         this.pageNo = pageNo;
         this.pageSize = pageSize;
         this.data = data;
-        this.count = totalCount;
+        this.totalCount = totalCount;
+
+
 
 //        当前页的处理
         if(pageNo<=0) this.pageNo=1;
@@ -170,12 +156,12 @@ public class Pager implements Serializable {
         this.data = data;
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getTotalCount() {
+        return totalCount;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
     }
 
     @Override
@@ -189,7 +175,7 @@ public class Pager implements Serializable {
                 ", last=" + last +
                 ", pages=" + pages +
                 ", data=" + data +
-                ", count=" + count +
+                ", totalCount=" + totalCount +
                 '}';
     }
 }
